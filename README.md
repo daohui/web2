@@ -1,28 +1,54 @@
 # Web2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+## Initial
 
-## Development server
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```shell
+ng new web2
+cd web2
+```
 
-## Code scaffolding
+Build and verify the initial setup:
+```shell
+ng serve --port=4201
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Save yarn config: _yarn_lock.json_
 
-## Build
+Create product distribution:
+```shell
+ng build --prod -aot=false
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Push initial product to github, and then create _gh-pages_ branch
 
-## Running unit tests
+```shell
+git checkout -b --orphan ph-pages
+git rm --cached -r .
+rm -f *
+rm -rf src e2e
+mv dist/* .
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Update the _href_ in the _base_ element in _index.html_ needs to be updated, create elements, which were moved from _dist_ folder (TODO: create script to extract files used by _index.html_), and push to _github_:
 
-## Running end-to-end tests
+```shell
+git push --set-upstream origin gh-pages
+---
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Development
 
-## Further help
+Switch to _master_ branch.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+yarn add @angular/material
+yarn add @angular/router
+```
+
+Introduce three UI components: header, side, body:
+
+```
+ng generate component -is ( header | side | body)
+```
+
