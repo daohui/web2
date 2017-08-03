@@ -2,7 +2,6 @@
 
 publish() {
    msg=`git log --format="%H" -n1`
-   git checkout gh-pages
    git rm *.css 
    git rm *.js 
    
@@ -13,9 +12,14 @@ publish() {
    cp index.html 404.html
    git add 404.html
    
-   git commit -m $msg && git push --force && git checkout master
+   diff=`git diff --name-only --cached`
+   if [ ! -z "$diff" ]; then
+      git commit -m $msg && git push --force 
+   else
+       echo "NO change!!!"
+   fi
 }
 
-if npm run prod; then
-   publish
+if npm run prod && git checkout gh-pages; then
+   publish && git checkout master
 fi
