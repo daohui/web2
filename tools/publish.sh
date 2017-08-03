@@ -16,6 +16,6 @@ publish() {
    git commit -m $msg && git push --force && git checkout master
 }
 
-if ng build --base-href /web2/ -prod -aot=false; then
+if npm run prod; then
    publish
 fi
