@@ -50,16 +50,17 @@ Merge NAV code and provide handle to navigate out to an external site.
 
 Note: use _yarn_ (instead of _npm_) to handle node modules
 
-### Create Github pages
-TODO (automate the following manual steps):
+### Create Github pages (use tools/publish.sh to automate the following steps):
 
 1. ```npm run prod```
 2. ```git checkout gh-pages```
 3. remove all _js_, _css_ files, deference the deleted files (using _git rm <file>_ command), 
 4. copy all the files from _dist_ directory to the main directory and add the files in the main directory to the git
 5. copy index.html to 404.html (for Github redirect, see first issue)
-5. commit and push to github
+6. commit and push to github
 
 ### Issues
 
 1. refresh as well as typing in url lead to 404. This is because the url is handled at the client side, while refresh or typing in url asks server for the page, and that leads to 404; the workaround is creating a 404.html page (step 5) for GitHub. In tomcat server that hosts this app, one needs to configurate 404 page; see http://jasonwatmore.com/post/2016/07/26/angularjs-enable-html5-mode-page-refresh-without-404-errors-in-nodejs-and-iis? and http://davidghedini.blogspot.com/2010/10/tomcat-custom-404-page.html
+
+2. tools/publish.sh must be executed in unix shell (git bash in windows) and one must manually switch back to master branch
